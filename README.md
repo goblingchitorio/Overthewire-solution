@@ -44,3 +44,8 @@ Trước khi giải game này ta phải làm quen với một số lệnh cơ b�
 - ```find```:lệnh này dùng để tìm một file hay một folder.
 ![](https://github.com/goblingchitorio/overthewire-solutions/blob/main/img4.jpg)
 Với các lệnh ở trên, ta sủ dụng lệnh ```ls``` để xem có bao nhiêu thư mục thì bất ngờ thư mục``` readme ``` hiện ra màn hình. Đến đây thì ta chỉ cần sử dụng lệnh ```cat``` để đọc thư mục ```readme```, và mật khẩu của level này hiện trong thư mục readme là :  ```6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR mk1 ```.
+
+#### Level 1->2
+Ở ```level 1->2 ``` mình cần tim password ở trong một thư mục có tên là ```-``` được lưu trữ trong thư mục chính.
+
+![]()
