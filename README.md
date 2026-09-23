@@ -48,4 +48,4 @@ Với các lệnh ở trên, ta sủ dụng lệnh ```ls``` để xem có bao nh
 #### Level 1->2
 Ở ```level 1->2 ``` mình cần tim password ở trong một thư mục có tên là ```-``` được lưu trữ trong thư mục chính.
 
-![]()
+![](img/img5)
