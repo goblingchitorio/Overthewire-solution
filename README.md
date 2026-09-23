@@ -53,4 +53,4 @@ Với các lệnh ở trên, ta sủ dụng lệnh ```ls``` để xem có bao nh
 #### Solution 
 Ở ```level 1->2```.Mình dùng lệnh ```cat``` để đọc thư muc ```-``` trong `home directory```.Nhưng vấn đề dặt ra là tên thư mục là một dạng ```dash filename```, nên nếu ta dùng lệnh cat thông thường ```cat -``` thì nó sẽ hiểu một cách đăt biệt là đọc dữ liệu từ bàn phím ```stdin```.
 
-![]()
+![](imgT/img6.jpg)
