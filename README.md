@@ -142,6 +142,148 @@ Như ở thử thách trước sau khi vào được ```user bandit4```, mình n
 
 - Mật khẩu cho level tiếp theo là: 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG.
 
+#### Level 5-> 6
+Đén ```level 5->6``` yêu cầu mình tìm password trong một ```file con``` nào đó trong thư mục ```inhere```. Đòng thời thỏa mãn các thuộc tính sau:
+
+- Human-readable(có thể đọc được)
+- 1033 bytes in size(có dung lượng là 1033 bytes)
+- Not executable(không có khả năng thực thi)
+
+
+![](imgT/img20.jpg)
+
+
+
+#### Solution
+
+
+
+
+
+
+Ở level này nếu mình chỉ dùng lệnh ```ls``` để xem hiển thị các thư mục, file sau đó dùng lệnh ```cd``` đi vào các thư mục để tìm password thì sẽ rất lâu. Vì khi với đi vào thư mục ```inhere```, lệnh ```ls``` làm hiển thị thư mục ```maybehere00 -> maybehere19```, trong từng thư mục đó có thêm rất nhiều các ```file nhỏ``` khác nữa. Nên việc tìm mật khẩu bằng cách này là bất khả thi.
+
+![](imgT/img21.jpg)
+
+Dựa vào các điều kiện của đề. Mình sẽ suy nghĩ về việc sử dụng lệnh tối ưu hơn, có thể xem định dạng các file, tìm kiếm nhanh chóng:
+
+- **Theo điều kiện đầu tiên**. ```File``` chứa password có thể đọc được (human-readable). Từ đó, mình sẽ sử dụng lệnh ```file``` kết hợp với lệnh ```grep``` để lọc lại các file mình có thể đọc theo```ASCII text```. Cụ thể ```file */* | grep "ASCII text"``` (```*/*``` trong lệnh input được xem là một ```option``` giúp kiểm tra các file trong thư mục con)
+
+![](imgT/img22.jpg)
+
+
+- **theo điều kiện thứ hai**. ```file``` chứa password có dung lượng là ```1033 bytes```. Mình dùng lệnh ```find ``` để tìm. Cụ thể ``` find . -type f -size 1033c```, ở đây chắc nhiều người sẽ không hiểu tại sao lại dùng ```.``` và ```-type ``` là cái gì?
+
+--> Khi đã đi vào thư mục ```inhere``` ta sử dụng dấu ```.``` để tìm các file hay thư mục con nằm trong thư mục ```inhere```. Lệnh ```-type f``` nghĩa là mình yêu cầu nó chỉ tìm các ```file``` bỏ qua các ```folder``` khác. Còn ```-size 1033c``` nghĩa là dung lương 1033 bytes.
+
+
+![](imgT/img23.jpg)
+
+-**theo điều kiện cuối**. ```file``` chứa password không có khả năng thực thi nghĩa là một ```file``` mà user không cho phép chạy như một chương trình. Mình vẫn sẽ sử dụng lệnh ```find``` để tìm. Cụ thể ```find . -type ! -executable```(```! - excutable``` là không thể thực thi).
+
+![](imgT/img24.jpg)
+
+Đến đây để tinh gọn cho các dòng input. Mình sử gộp các điều kiện trên trong 1 dòng. Cụ thể ```find . -type f ! -executable -size 1033c```.
+
+![](imgT/img25.jpg)
+
+Mật khẩu của level tiếp theo là: pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
+
+
+#### Level 6 -> 7
+Ở ```level 6 -> 7``` mình cần lấy được password ở một ```file ẩn``` được lưu trữ ở vị trí nào đó trong ```sever```. Đồng thời thỏa mãn các thuộc tính sau:
+
+- own by user bandit7 (thuộc sở hữu của user bandit7).
+- own by group bandit6 (thuộc sở hữu của gruop bandit6).
+- 33 bytes in size (dung lượng là 33 bytes).
+
+![](imgT/img26.jpg)
+
+
+#### Solution 
+Khi đã nắm rõ các cấu trúc lệnh ở level trên thì khi tìm password ở level này khá là dễ. Mình vẫn sẽ sử dụng lệnh ```find``` nhưng có một điều khác biệt là mình sẽ không sử dụng dấu ```.``` vì chỉ tim trong một thư mục nào đó, ở thử thách này thì các thư mục đã bị ẩn hết. Vì vậy ở đây mình sẻ sũ dụng dấu ```/``` để tìm các foler hay file ở toàn bộ hệ thống thông tin ```user```. Cụ thể ```find / -type f -user bandit7 -group bandit6 -size 33c```
+
+
+![](imgT/img27.jpg)
+
+- Đến đây màn hình sẽ hiển thị một loạt các file mà lệnh ```find``` đã tìm được nhưng có rất nhiều các file không đủ quyền hạn(permission denied). Nếu bạn nào tinh mắt thì sẽ thấy ngay ```file``` chứa password.
+
+![](imgT/img28.jpg)
+
+- ngoài ra mình có thẻ dùng lệnh để loại bỏ hết các file không thể truy cập(permission denied) bằng cách thêm lệnh ```2>/dev/null``` vào cuối câu lệnh. Cụ thể ```find / -type f -user bandit7 -gruop bandit6 -size 33c 2>/dev/null```
+
+![](imgT/img29.jpg)
+
+Mật khẩu cho level tiếp theo là: Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
+
+
+#### Level 7 -> 8
+Ở level này mật khẩu được giấu trong ```file data.txt```, kế bên là chữ ```millionth```.
+
+
+![](imgT/img30.jpg)
+
+#### Solution 
+
+Các lệnh cơ bản để có thể giải quyết thử thách này nhanh chóng:
+
+- **man**: Để xem cách sử dụng về một lệnh nào đó.
+- **grep**: Tìm kiếm một chuỗi kí tự hay một file nào.
+- **sort**: Sắp xếp các chuỗi kí tự trong file hay một output.
+- **uniq**: So sánh các chuỗi kí tự trong file hay một uotput nào đó.
+- **strings**: Trích xuất các chuỗi kí tự có thể in được(printable characters) trong file nhị phân hay file nhị phân phức tạp.
+- **base64**:  Mã hóa các chuỗi kí tự từ dãy nhị phân sang bảng ASCII text và dễ dàng truyền tải qua các giao thức mạng.
+- **tr**: Dùng để dịch hoặc xóa kí tự.
+- **tar**: Dùng để tạo quản lí và giải nén các tập tin đã lưu trữ.
+- **gzip**: Dùng đẻ nén và giải nén các file theo định dạng gzip.
+- **bzip**: Dùng đẻ nén và giải nén các file theo định dạng bzip.
+- **xxd**: 
+
+
+
+
+
+
+Thử thách ở level này khá dễ nếu mình đi đúng hướng. Đầu tiên mình dùng lệnh ```ls -la``` để kiểm tra các ```file và folder```, thi thấy xuất hiện file ```data.txt```. Sau đó mình dùng lệnh ```cat``` để đọc file ```data.txt```.
+
+![](imgT/img31.jpg)
+
+Đến đây nếu mình ngồi dò từng dòng ```output```xem dòng nào có chữ ```millionth``` thì có vẻ sẽ khá khoai. Nên đến đây mình sẽ dùng lệnh ```grep``` để tìm đúng dòng chứa mật khẩu đồng thời chứa cả chữ ```millionth```. Cụ thể ```grep  "millionth" data.txt```.
+
+![](imgT/img32.jpg)
+
+Mật khẩu cho level tiếp theo:  VR1ljMayciFxbnUokuQmJFw6QC9VKtub
+
+
+#### Level 8 -> 9
+Ở ```level 8 -> 9``` mật khẩu được lưu trữ trong ```file data.txt```, chỉ duy nhất một dòng không lặp lại trong file ```data.txt```.
+
+![](imgT/img33.jpg)
+
+#### Solution
+Ở level này , mình làm quen với lệnh mới là ```sort```. với Lệnh ```sort ``` (lưu ý dùng lệnh ```sort``` không kèm theo các ```[option]```) thì ```output``` sẽ sắp xếp các file theo thứ tự ```bảng chữ cái``` hay theo bảng mã ``ASCII text```.
+
+![](imgT/img34.jpg)
+
+- Sau đó mìn kết hợp dùng lệnh ```uniq``` để loại bỏ các file lặp lại(lưu ý: lệnh ```uniq``` chỉ loại các file lặp liền kề do đó mình phải dùng kết hợp với lệnh ```sort``` qua dấu ```|```). Cụ thể ```sort data.txt | uniq -u```(```-u``` là kiểm tra các dòng xuất hiện đúng một lần).
+
+  ![](imgT/img35.jpg)
+
+  Mật khảu cho level tiếp theo là: EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+
+  #### level 9 -> 10
+
+
+  
+
+  
+
+
+
+
+
+
+
 
   
 
