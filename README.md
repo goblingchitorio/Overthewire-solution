@@ -237,7 +237,7 @@ Các lệnh cơ bản để có thể giải quyết thử thách này nhanh ch�
 - **tar**: Dùng để tạo quản lí và giải nén các tập tin đã lưu trữ.
 - **gzip**: Dùng đẻ nén và giải nén các file theo định dạng gzip.
 - **bzip**: Dùng đẻ nén và giải nén các file theo định dạng bzip.
-- **xxd**: 
+- **xxd**: Chuyển dữ liệu dãy nhị phân sang mã hex(hệ thập lục phân)
 
 
 
@@ -269,13 +269,56 @@ Mật khẩu cho level tiếp theo:  VR1ljMayciFxbnUokuQmJFw6QC9VKtub
 
   ![](imgT/img35.jpg)
 
-  Mật khảu cho level tiếp theo là: EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
+  Mật khẩu cho level tiếp theo là: EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
 
   #### level 9 -> 10
 
+Ở cấp độ tiếp theo mật khẩu được đặt trong ```data.txt```. là một số ít chuỗi kí tự có thể đọc được, được đặt trước nhiều dấu ```=```.
 
+
+![](imgT/img36.jpg)
+
+#### Solution 
+
+Ở thử thách này, mình thấy khá dễ. Mình dùng lệnh ```strings``` kết hợp với ```grep```. Cụ thể ```strings data.txt | grep =```.
+
+![](imgT/img37.jpg)
+
+Mật khẩu của level tiếp theo là: B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
+
+
+#### Level 10 -> 11
+Ở ```level 10 -> 11``` yêu cầu lấy password trong file ```data.txt``` , đồng thời chứa dữ liệu mã hóa `base64```.
+
+
+
+![](imgT/img38.jpg)
+
+#### Solution 
+Ngay từ đề bài ta đã biết password trong file ```data.txt``` đã bị mã hóa ```base64```. Nên mình dùng lệnh ```base64``` và thêm vào đó ```option -d(decode)```. Cụ thể ```base64 -d  data.txt```
+
+
+![](imgT/img39.jpg)
+
+#### References
+- [Base64 on Wikipedia ](https://en.wikipedia.org/wiki/Base64)
+
+#### Level 11 -> 12
+Ở thử thách này, password mình cần tìm nằm trong file ```data.txt``` được mã hóa một cách đặt biệt bằng cách các chữ cái thường ```a-z``` các chữ cái in hoa ```A-Z``` được thay đổi cách nhau 13 vị trí.
+
+![](imgT/img40.jpg)
+
+
+#### Solution
+Khi đọc đề mình thấy password nằm trong file ```data.txt``` bị thay thế vị trí nên mình sử dụng lệnh ```tr``` để đổi lại vị trí của các kí tự. Mặt khác khi dùng lệnh ```tr``` thì ta phải dùng kết hợp với dấu pipe ```|``` vì lệnh ```tr``` không đọc file một cách trực tiếp. Cụ thể ```cat data.txt | tr 'a-zA-Z' 'n-za-mN-ZA-M'```
+
+--> giải thích một chút ở lệnh ```'a-zA-Z' 'n-za-mN-ZA-M'```. Trên đề bài ta đã có các vị trí của các kí tự trong file ```data.txt``` đã bị thay đổi cách nhau 13 vị trí, xét theo hệ bảng chữ cái tiếng anh thì ta có chữ ```A``` cách chữ ```M``` đúng 13 vị trí và chữ ```N``` cách chữ ```Z``` cũng đúng 13 vị trí(bao gồm cả chữ in thường), nên ở đây mình cần đổi lại vị trí của các kí tự từ ```a-z và A-Z```thành các chuỗi kí tự cách nhau 13 vị trí ```n-z và a-m, N-Z và A-M```
   
+![](imgT/img41.jpg)
 
+#### References
+
+- [ROT13 on Wikipedia ](https://en.wikipedia.org/wiki/ROT13)
   
 
 
