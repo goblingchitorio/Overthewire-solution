@@ -315,8 +315,10 @@ Khi đọc đề mình thấy password nằm trong file ```data.txt``` bị thay
 --> giải thích một chút ở lệnh ```'a-zA-Z' 'n-za-mN-ZA-M'```. Trên đề bài ta đã có các vị trí của các kí tự trong file ```data.txt``` đã bị thay đổi cách nhau 13 vị trí, xét theo hệ bảng chữ cái tiếng anh thì ta có chữ ```A``` cách chữ ```M``` đúng 13 vị trí và chữ ```N``` cách chữ ```Z``` cũng đúng 13 vị trí(bao gồm cả chữ in thường), nên ở đây mình cần đổi lại vị trí của các kí tự từ ```a-z và A-Z```thành các chuỗi kí tự cách nhau 13 vị trí ```n-z và a-m, N-Z và A-M```
   
 ![](imgT/img41.jpg)
+Mật khẩu cho level tiếp theo là: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
 
 #### References
+
 
 - [ROT13 on Wikipedia ](https://en.wikipedia.org/wiki/ROT13)
   
