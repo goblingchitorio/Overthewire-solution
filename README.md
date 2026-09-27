@@ -321,11 +321,79 @@ Mật khẩu cho level tiếp theo là: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
 
 
 - [ROT13 on Wikipedia ](https://en.wikipedia.org/wiki/ROT13)
-  
 
 
 
 
+#### Level 12 -> 13
+
+Ở level này password được giấu trong  có tên là ```data.txt```, được định dạng sẵn là một ```hexdump``` và đã được nén nhiều lần. Và đề có cho mình một gợi tí là hãy tạo một thư mục mới dưới dạng ```/tmp```. Nơi mà mình có thể giải né các file ```hexdump```, dùng lệnh ```mktemp -d``` để tạo một ```directory ``` và copy các dữ liệu trong tệp ```data.txt``` qua thư mục mới tạo bằng lệnh ```cp``` đồng thơi thực hiện thao tác đổi tên bằng lệnh ```mv```.
+
+![](imgT/img42.jpg)
+
+#### Solution
+ Ở đây nếu dùng lệnh ```cat``` để đọc tệp ```data.txt``` thì sẽ xuất ra các dòng lệnh theo mã ```hex``` mình cần phải dịch ngược các dòng lệnh đó để tạo ra mật khẩu.
+
+
+![](imgT/img43.jpg)
+
+Khỉ tiếp cận vào bài này mình sẽ nghĩ là sử dụng lệnh ```xxd``` để giải nén tệp ```data.txt```. nhưng kết quả xuất ra màn hình là các kí tự lạ. Ở đây mình có thể giải thích về các kí tự là này như sau: vì mình dùng lệnh ```xxd -r data.txt```(option -r có nghĩa là reverse ) mà không điều hướng đầu ra thì kết quả output là các kí tự lạ. 
+
+![](imgT.img44,jpg)
+
+Đến đây mình thử tạo một thư mục có đường dẫn là ```/tmp``` bằng lệnh ```mktemp -d```.
+![](imgT/img45.jpg)
+
+- Mình thấy một thư mục mới đã được tạo. Mình tiến hành đi vào tệp đó với lệnh ```cd```. Sau khi vào được tệp đó mình thực hiện thao tác copy các dữ liệu từ tệp ```data.txt``` bằng lệnh ```cp```. Cụ thể ```cp ~/data.txt .```. Sau đó mình dùng lệnh ```ls``` để kiểm tra xem trong thư mục mới tạo đã có tệp ```data.txt``` chưa.
+- Tiếp đến mình sử dụng lại lệnh ```xxd -r data.txt ``` nhưng lần này mình sẽ truyền vào một đầu ra có tên là ```tintitun```. Cụ thể ```xxd -r data.txt > tintitun```. sau đó mình dùng lệnh ``` file``` để kiểm tra xem đầu ra của tệp ```data.txt``` là gì. Cụ thể dùng lệnh ```file tintitun```.
+
+  ![](imgT/img46.jpg)
+
+- Khi đó mình nhận ra ngay đó là định dạng gzip. thể giải nén tệp gzip như thế nào? Như trên đề có gợi ý mình phải đổi tên bằng lệnh ``` mv```(lưu ý: đổi tên nhưng phải có đuôi ```.gz``` thì mới có thể giải nén các thư mục định dạng gzip được), sau đó giải nén bằng lệnh ```gzip -d ```.
+
+![](imgT/img47.jpg)
+
+-Mình thấy sau khi giải nén định dạng dầu ra ```tintitun``` thì định dạng ```bzip2``` xuất hiện nên mình thưc hiện lại các thao tác khi làm với ```gzip```. 
+
+
+![](imgT/img48.jpg)
+
+- Tiếp tục mình thấy định dạng đầu ra của nó lại là ```gzip``` như thay đổi địa chỉ lưu trữ từ ```data2.bin``` thành ```data4.bin```. Mình tiếp tục lặp lại các thao tác.
+
+
+ ![](imgT/img49.jpg)
+
+ - Tiếp theo mình thấy định dạng đầu ra của tệp ```data.txt``` đã bị thay đổi. Lần này là định dạng ```tar```. Mình dùng lệnh ```tar``` thêm option ```-xvf```(x là extract, v là verbose, f là file nghĩa là trích xuất chi tiết các file trong tệp). Cụ thể ```tar -xvf tintitun```
+
+ - ![](imgT/img50.jpg)
+
+- Sau khi giải nén xong mình thấy xuất hiện file mới ```data5.bin``` nên mình dùng lệnh ```file``` để kiểm tra thì thấy lại là file ```tar```. Mình tiếp tục dùng lệnh ở trên để trích xuất dữ liệu trong file```data5.bin```
+
+  ![](imgT/img51.jpg)
+
+  - Xuất hiện lại định dạng ```bzip2```. Tiếp tục lặp lại thao tác giải nén tệp ```bzip2```
+    
+    ![](imgT/img52.jpg)
+
+ - MÌnh kiểm tra một tệp mới bằng lệnh ```file```. Thì thấy xuất hiện dạng ```tar```. Nên mình thực hiện giải nén dạng ```tar```.
+ 
+   ![](imgT.img53.jpg)
+
+
+ - Tiếp đến mình lại thấy xuất hiện tệp ```data8.bin```. Nên mình kiểm tra và thấy đó là định dạng ```gzip```, tiến hành giải nén file ```gzip```
+
+![](imgT/img54.jpg)
+
+
+-Cuối cùng mình kiểm tra định dang file 8 thì thấy đó là một tệp ```ASCII text```, mình tiến hành đọc tệp ```data8``` bàng lệnh ```cat``` thì thấy xuất hiện passwword
+
+![](imgT/img55.jpg)
+
+- Mật khẩu cho level tiếp theo là: qQYQiHOBPR8zR61qxYqX45quvihF2uzk
+
+
+#### References
+- [hexdump on Wikipedia ](https://en.wikipedia.org/wiki/Hex_dump)
 
 
 
