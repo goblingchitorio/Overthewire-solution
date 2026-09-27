@@ -396,6 +396,10 @@ Khỉ tiếp cận vào bài này mình sẽ nghĩ là sử dụng lệnh ```xxd
 - [hexdump on Wikipedia ](https://en.wikipedia.org/wiki/Hex_dump)
 
 
+#### Level 13 -> 14
+
+
+
 
 
   
