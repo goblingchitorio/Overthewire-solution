@@ -392,11 +392,59 @@ Khỉ tiếp cận vào bài này mình sẽ nghĩ là sử dụng lệnh ```xxd
 - Mật khẩu cho level tiếp theo là: qQYQiHOBPR8zR61qxYqX45quvihF2uzk
 
 
-#### References
+#### ferences
 - [hexdump on Wikipedia ](https://en.wikipedia.org/wiki/Hex_dump)
 
 
 #### Level 13 -> 14
+Ở level này được lưu trong ```/etc/bandit_pass/bandit14``` và mình chỉ có thể đọc được khi mình đăng nhập vào ```user bandit14```. Ở đây mình sẽ không đi tìm password cho level này, mà mình phải tìm ```sshkey private```để có thể đăng nhập vào level tiếp theo. Nhìn vào việc đăng nhập vào các level trước đây để có thể đăng nhập vào```user``` thông qua giao thức```ssh``` và tìm cách sử dụng```key``` cho level tiếp theo. Và nếu bạn cần gợi ý thì có một tệp nằm ở trong thư mục chính, và hãy đọc kĩ các thông báo lỗi vì nó rất hữu ích.
+
+![](imgT/img56.jpg)
+
+#### Solution 
+
+Trước khi giải level này mình cần làm quen với các lệnh mới:
+- **ssh**: là lệnh để đặng nhập vào máy chủ từ xa một cách an toàn.
+- **scp**: là lệnh để copy nội dung của một thư mục hay một file để máy tính.
+- **umask**:cho phép xem hoặc thiêt lập mặt nạ tạo tập tin.
+- **chmod**: cho phép quyền truy cập vào file hay thư mục.
+- **cn**: là một công cụ dòng lệnh cho phép gửi và nhận dữ liệu qua kết nối mạng sử dụng giao thức TCP hoặc UDP.
+- **install**:cho phép sao chép file một cách linh hoạt.
+
+  
+Khi đăng nhập vào ```bandit13``` và thực hiện các thao tác để đọc file ```sshkey.private```.
+
+![](imgT/img57.jpg)
+
+Nhưng vấn đề là mật khẩu không thể đọc được.Mà bắt buộc mình phải sử dụng ```sshkey.private``` để đăng nhập vào ```bandit14```. Một lưu ý là khi mình dùng terminal để giải thì không tồn tại cú pháp cho lệnh ```chmod```ngoài ra máy chủ đã khóa các truy cập từ cách lệnh đăng nhập bằng đường truyền ```ssh```. Nên ở level này mình sẻ sử dụng ```git bash```.
+
+![](imgT/img58.jpg)
+
+Sau khi mở ```git bash``` ta chuyển lại về ```terminal``` bằng lệnh ```cmd.exe```. Tiến hành đăng nhập vào ```bandit13```. Và nhận thấy một khóa ```sshkey.private```.Đến đây mình thực hiện thao tác để sao chép tệp ```sshkey.private``` bằng lệnh```scp```. 
+
+Cụ thể ```scp -P bandit13@bandit.labs.overthewire.org:~/sshkey.private tintitun.private```(ở đây mình chép tẹp sshkey.private và mình truyền vào tệp tintitun.private)
+
+![](imgT/img59.jpg)
+
+Để kiểm tra mình tạo được một tệp đầu ra của ```sshkey.private``` chưa? Mình dùng lệnh ```dir```.
+
+![](imgT/img60.jpg)
+
+Khi thấy xuất hiện tệp đầu ra ```tintitun.private ```. Mình cần cung cấp quyền đọc và ghi bằng lệnh ```chmod```. Cụ thể ```chmod 600 tintitun.private```
+
+![](imgT/img61.jpg)
+
+Đến đây mình truy cập vào máy chủ bằng lệnh đăng nhập nhưng mình dùng thêm một [option]```-i```(identity). Cụ thể ```ssh -p 2220 -i tintitun.private bandit14@bandit.labs.overthewire.org```.
+
+![](imgT/img62.jpg)
+
+Đến đây mình sẽ dùng lệnh ```cat``` để đọc tệp ```/etc/bandit_pass/bandit14```
+
+Mật khẩu cho level tiếp theo là: aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
+
+#### References
+- [SSH/openSSH/Keys]( https://help.ubuntu.com/community/SSH/OpenSSH/Keys)
+- [Tranferring File and SCP](https://help.ubuntu.com/community/SSH/TransferFiles)
 
 
 
