@@ -447,6 +447,28 @@ Mật khẩu cho level tiếp theo là: aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
 - [Tranferring File and SCP](https://help.ubuntu.com/community/SSH/TransferFiles)
 
 
+#### Level 14->15
+Ở level này, mình muốn có được mật khẩu của level tiếp theo thì phải truy cập vào user ```localhost``` ở cổng ```port 30000``` và gửi mật khẩu hiện tại lên.
+
+![](imgT/img63.jpg)
+
+#### Solution
+Để gửi và nhận một dữ liệu ở một đường dẫn cụ thể mình dùng lệnh ```nc```. Cụ thể ```nc localhost 30000```
+
+![](imgT/img64.jpg)
+
+Mật khẩu cho level tiếp theo là: pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
+
+#### References
+- [How the Internet works in 5 minutes (YouTube) (Not completely accurate, but good enough for beginners)](https://www.youtube.com/watch?v=7_LPdttKXPc)
+- [IP Addresses](https://computer.howstuffworks.com/web-server5.htm)
+- [IP Address on Wikipedia](https://en.wikipedia.org/wiki/IP_address)
+- [Localhost on Wikipedia](https://en.wikipedia.org/wiki/Localhost)
+- [Ports](https://computer.howstuffworks.com/web-server8.htm)
+- [Port (computer networking) on Wikipedia](https://en.wikipedia.org/wiki/Port_(computer_networking))
+
+
+
 
 
 
