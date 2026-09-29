@@ -410,6 +410,7 @@ Trước khi giải level này mình cần làm quen với các lệnh mới:
 - **chmod**: cho phép quyền truy cập vào file hay thư mục.
 - **cn**: là một công cụ dòng lệnh cho phép gửi và nhận dữ liệu qua kết nối mạng sử dụng giao thức TCP hoặc UDP.
 - **install**:cho phép sao chép file một cách linh hoạt.
+- **telnet**:cho phép kết nối không bảo mật vào sever.
 
   
 Khi đăng nhập vào ```bandit13``` và thực hiện các thao tác để đọc file ```sshkey.private```.
@@ -453,7 +454,9 @@ Mật khẩu cho level tiếp theo là: aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
 ![](imgT/img63.jpg)
 
 #### Solution
-Để gửi và nhận một dữ liệu ở một đường dẫn cụ thể mình dùng lệnh ```nc```. Cụ thể ```nc localhost 30000```
+Để gửi và nhận một dữ liệu ở một đường dẫn cụ thể mình dùng lệnh ```nc```. Cụ thể ```nc localhost 30000```, hoặc mình có thẻ dùng lệnh ```telnet``` để gửi lại mật khẩu vào cổng ```30000```. Cụ thể ````telnet localhost 30000```.
+
+![](imgT/img65.jpg)
 
 ![](imgT/img64.jpg)
 
@@ -468,7 +471,62 @@ Mật khẩu cho level tiếp theo là: pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
 - [Port (computer networking) on Wikipedia](https://en.wikipedia.org/wiki/Port_(computer_networking))
 
 
+#### Level 15->16
+Màn cướp mật khẩu này ta phải gửi lại mật khẩu của level hiện tại lên ```localhost```vào cổng 30001. NHưng ta được cho giả thuyết là phải sử dụng ```SSL/TLS encryption```.
 
+![](imgT/img66.jpg)
+
+#### Solution
+Để lấy được mật khẩu cho màn chơi tiếp theo, mình làm quen với các lệnh mới:
+- **ncat**:Đọc/ghi dữ liệu qua cổng mạng bằng giao thức TCP hoặc UDP.
+- **socat**:Chuyển tiếp dữ liệu hai chiều giữa hai luồng dữ liệu độc lập.
+- **openssl**:Bộ công cụ mã hóa đa năng xử lý chứng chỉ số SSL/TLS, tạo khóa RSA/ECC, mã hóa/giải mã file và tính giá trị băm (hash).
+- **s_client**:Đóng vai trò là một SSL/TLS Client để kết nối trực tiếp đến các dịch vụ đang chạy trên cổng có mã hóa SSL/TLS.
+- **nmap**:Dò quét mạng và kiểm tra an ninh hệ thống.
+- **netstat**:Hiển thị danh sách các kết nối mạng đang hoạt động, danh sách cổng đang lắng nghe ```listening ports```, bảng tuyến đường ```routing table``` trên máy hiện tại.
+- **ss**:Chức năng tương tự ```netstat``` nhưng là phiên bản hiện đại hơn, cho tốc độ xử lý nhanh hơn và hiển thị chi tiết hơn thông tin về các socket mạng.
+
+Như ở trên đề, mình đã biết các dạng dữ liệu ở dạng ```SSl/TLS```, nên việc dùng ```netcat``` không được vì lệnh đó không đọc được dữ iệu ```SSL```. Vì thế mình dùng lệnh ```openssl```. Cụ thể ```openssl s_client -connect localhost:30001```. Sau đó mình điền password của level hiện tại vào.
+
+![](imgT/img67.jpg)
+
+
+![](imgT/img68.jpg)
+
+Mật khẩu cho level tiếp là: kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V
+
+
+
+#### References
+- [Secure Socket Layer/Transport Layer Security on Wikipedia](https://en.wikipedia.org/wiki/Transport_Layer_Security)
+- [OpenSSL Cookbook - Testing with OpenSSL](https://www.feistyduck.com/library/openssl-cookbook/online/testing-with-openssl/index.html)
+
+
+#### Level 16->17
+Ở cấp độ này mình tìm mật khẩu cho level tiếp theo bằng cách gửi mật khẩu vào một cổng trong số các cổng từ ```31000 đến 32000``` trên ```localhost``` . Đầu tiên mình phải biết được cổng nào có chứa dữ liệu ```ssl``` cổng nào không. Sẽ có duy nhất một cổng có chứa mật khẩu, các cổng còn lại sẽ gửi lại các giá trị mà bạn đã gửi.
+
+![](imgT/img69.jpg)
+
+#### Solution
+Khi đăng nhập vào ```bandit16``` ta tiến hành lọc các cổng nào có chứa ```password``` bằng lệnh ```nmap``` cùng với các ```option``` được kết hợp (```-Av```:aggressive verbose) hoặc option ```-sV```. Cụ thể ```nmap -Av -p 31000-32000 localhost```.
+
+![](imgT/img70.jpg)
+
+Mình thấy ngay cổng ```31790``` không trả về giá trị. Mình tiến hình dò cổng ```31790``` bằng lệnh ```openssl```. Cụ thể ``` openssl s_client -connect localhost:31790 -quiet```. Sau đó mình nhập mật khâu của level hiện tại vào để có được mật khẩu .
+
+![](imgT/img71.jpg)
+
+Nhưng đặc biệt ở đây dạng mật khẩu là khóa đặc biệt của ```SSH``` nên ở đây mình sẽ ăn gian 1 tí
+=)) . Như ở các level trước mình đã tạo một tệp trong ```My documents``` có tên là ```sshkey.private```. Mình sẽ copy hết mật khẩu dạng đặc biệt của ```ssh``` cho vào tệp ```sshkey.private```, sau đó mình input lệnh ``` chmod 600 sshkey.private```. Tiếp đến mình đăng nhập vào ```bandit17``` bằng cách ```ssh -i sshkey.private -p 2220 bandit17@bandit.labs.overthewire.org```. Cuối cùng dùng lệnh ``` cat /etc/bandit_pass/bandit17``` để lấy mật khẩu.
+
+![](imgT/img73.jpg)
+
+![](imgT/img72.jpg)
+
+Mật khẩu cho level tiếp theo là: pWXMAZoxGC8JmDMfmT5MGEsobMM3vnj2
+
+#### References
+-[Port scanner on Wikipedia](https://en.wikipedia.org/wiki/Port_scanner)
 
 
 
