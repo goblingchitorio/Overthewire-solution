@@ -572,11 +572,14 @@ Mật khẩu cho level tiếp theo là: KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI
 ![](imgT/img80.jpg)
 
 #### Solution
-Khi log vào được sever ```bandit19```, mình thực hiện lệnh ```ls``` thấy xuất hiện file ```bandit20-do```. Ở đây mình đang muốn xem nội dung trong file```bandit20-do```, mà nếu mình dùng lệnh ```cat``` thì dữ liệu output ```setuid binary```, nên mình không thể đọc được. Ở đây mình dùng lệnh ```./``` để dịch mã nhị phân cùng với lệnh ```cat```. Cụ thể ```./bandit20-do cat /etc/bandit_pass/bandit20```.
+Khi log vào được sever ```bandit19```, mình thực hiện lệnh ```ls``` thấy xuất hiện file ```bandit20-do```. Ở đây mình đang muốn lấy được mật khẩu cho ```bandit20``` thì mình phải dùng lệnh```cat /etc/bandit_pass/bandit20``` nhưng output là ```permission denied``` có nghĩa là không có quyền truy cập. Nên ở đây mình sẽ đọc mật khẩu của bandit20 dưới quyền của user khác. Cụ thể ```./bandit20-do cat /etc/bandit_pass/bandit20```.
 
 ![](imgT/img80.jpg)
 
-![](imgT/img81)
+![](imgT/img81.jpg)
+
+Mật khẩu cho level tiếp theo là: 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
+
 
 
 
