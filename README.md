@@ -485,6 +485,7 @@ Màn cướp mật khẩu này ta phải gửi lại mật khẩu của level hi
 - **nmap**:Dò quét mạng và kiểm tra an ninh hệ thống.
 - **netstat**:Hiển thị danh sách các kết nối mạng đang hoạt động, danh sách cổng đang lắng nghe ```listening ports```, bảng tuyến đường ```routing table``` trên máy hiện tại.
 - **ss**:Chức năng tương tự ```netstat``` nhưng là phiên bản hiện đại hơn, cho tốc độ xử lý nhanh hơn và hiển thị chi tiết hơn thông tin về các socket mạng.
+- **diff**: được dùng để nhận biết sự khác biệt giữa 2 thư mục.
 
 Như ở trên đề, mình đã biết các dạng dữ liệu ở dạng ```SSl/TLS```, nên việc dùng ```netcat``` không được vì lệnh đó không đọc được dữ iệu ```SSL```. Vì thế mình dùng lệnh ```openssl```. Cụ thể ```openssl s_client -connect localhost:30001```. Sau đó mình điền password của level hiện tại vào.
 
@@ -529,7 +530,61 @@ Mật khẩu cho level tiếp theo là: pWXMAZoxGC8JmDMfmT5MGEsobMM3vnj2
 -[Port scanner on Wikipedia](https://en.wikipedia.org/wiki/Port_scanner)
 
 
-#### Level 
+#### Level 17->18
+Ở level này mình có 2 thư mục nằm trong ```homedirectory```. Đó là ```passwords.old and passwords.new```. Mật khẩu cho level tiếp theo nằm trong thư mục ```passwords.new```. Là dòng duy nhất có thể thay đổi giữa ```passwords.old and passwords.new```.
+
+
+![](imgT/img74.jpg)
+
+
+#### Solution 
+ở đây mình dùng ```lệnh diff```. Cụ thể ```diff passwords.old passwords.new```.
+
+![](imgT/img75.jpg)
+
+Mật khẩu cho level tiếp theo là: OQxXZjELndr90zuhOTDYBEomI0SZITXI
+
+
+#### Level 18->19
+
+Ở level này mật khẩu nằm trong file ```readme``` ở thư mục chính (```homedirectory```). Không may một số file ```bashrc``` đã bị chỉnh sửa khi mình đăng nhập vào bằng ```SSH```.
+
+![](imgT/img76.jpg)
+
+#### Solution
+khi đăng nhập vào ```sever bandit18``` bằng mật khẩu mới lấy được, mình thấy xuất hiện một điều đặc biệt là nó sẽ không đi vào ```bandit18@bandit``` như thường.
+
+![](imgT/img77.jpg)
+
+Đường dẫn bằng ```bashrc``` đã bị chỉnh sửa nên không thể đăng nhập vào user bằng ssh.
+
+![](imgT/img78.jpg)
+
+Nên ở đây mình sẽ sửa dụng thêm option(```-T```) có thể bỏ qua quá trình đọc file ```bashrc```. Cụ thể ```ssh bandit18@bandit.labs.overhthewire.org -p 2220 -T```. Sau đó mình dán mật khẩu của level hiện tại vào. Đến đây một hộp thoại ẩn hiện lên, tiếp theo mình cần tìm file ```readme``` bằng lệnh ```ls```, thì thấy file ```readme``` hiện ra và cuối cùng dùng lệnh ```cat``` để đọc file ```readme```.
+
+![](imgT/img79.jpg)
+
+Mật khẩu cho level tiếp theo là: KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI
+
+#### Level 19->20
+Để truy cập lên cấp độ tiếp theo, bạn nên sử dụng nhị phân ```setuid``` trong thư mục chính. Thực thi nó mà không cần đối số để tìm hiểu cách để sử dụng nó. Mật khẩu cho cấp độ này có thể được tìm thấy trong phần thông thường ```Place (/etc/bandit_pass)```, sau khi bạn đã sử dụng nhị phân ```Setuid```.
+
+![](imgT/img80.jpg)
+
+#### Solution
+Khi log vào được sever ```bandit19```, mình thực hiện lệnh ```ls``` thấy xuất hiện file ```bandit20-do```. Ở đây mình đang muốn xem nội dung trong file```bandit20-do```, mà nếu mình dùng lệnh ```cat``` thì dữ liệu output ```setuid binary```, nên mình không thể đọc được. Ở đây mình dùng lệnh ```./``` để dịch mã nhị phân cùng với lệnh ```cat```. Cụ thể ```./bandit20-do cat /etc/bandit_pass/bandit20```.
+
+![](imgT/img80.jpg)
+
+![](imgT/img81)
+
+
+
+
+
+
+
+
 
 
 
