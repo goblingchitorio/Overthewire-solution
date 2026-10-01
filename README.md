@@ -581,6 +581,44 @@ Khi log vào được sever ```bandit19```, mình thực hiện lệnh ```ls``` 
 Mật khẩu cho level tiếp theo là: 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
 
 
+#### Level 20->21
+Ở level này, có một thư mục dạng ```setuid binary(nhị phân)``` nằm trong thư mục chính, mình phải sử dụng ```suconnect``` để làm theo các bước sau: đầu tiên mình phải tạo ra một cổng mới trên ```commandline``` để kết nối với ```localhost```, tiếp theo bạn sẽ nhập vào chương trình đang chạy ```suconnect``` dưới cổng mà mình mới tạo để ```suconnect``` tiến hành so sánh với mật khẩu của level hiện tại. Nếu đúng thì sẽ trả lại mật khẩu cho level tiếp theo.
+
+![](imgT/img83.jpg)
+
+#### Solution 
+Đầu tiên mình sẽ thực hiện thao tác tạo cổng mới để chạy ```suconnect``` và kết nối với ```localhost``` bằng lệnh ```netcat```. Cụ thể ```netcat -nlp 1810```(-n để bỏ qua kết nối DNS, -l để lắng nghe kết , -p chỉ định cổng khi lắng nghe kết nối).
+
+
+![](imgT/img84.jpg)
+
+Sau đó mình cần kết nối với cổng mà mình mới tạo ra bằng cách mở một tab commandline, kết nối với ```bandit20``` sau đó chạy hệ nhị phân ```suconnect``` có kết nối với cổng mới tạo. Cụ thể ```./suconnect 1810```
+
+
+![](imgT/img85.jpg)
+
+Sau khi chạy tệp nhị phân mình tiến hành điền mật khẩu vào để ```suconnect``` so sánh mới mật khẩu.
+
+
+![](imgT/img86.jpg)
+
+Mật khẩu cho level tiếp theo là: bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY
+
+#### Level 21->22
+
+Một chương trình chạy tự động theo các khoảng thời gian đều đặn từ cron, bộ lập lịch công việc dựa trên thời gian. Hãy tìm trong ```/etc/cron.d/``` cấu hình và xem lệnh nào đang được thực thi.
+
+![](imgT/img87.jpg)
+
+#### Solution
+Đầu tiên mình phải đi vào ```/etc/cron.d/``` để tìm các tệp đang hoạt động bằng lệnh ```cd```. Sau đó mình sẽ thấy xuất hiện tệp ```cronjob_bandit22```xuất hiện, tiếp theo mình tiến hành đọc  tệp ```cronjob_badnit22```. Và mình thấy được 1 tệp ẩn ```bandit22 /usr/bin/cronjob_bandit22.sh```. Tiếp tục đọc tệp ẩn đó ta có một tệp mới ``` /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv``` đã được cấp quyền đọc bới ```chmod``` và khi đọc tệp ấy mình có được mật khẩu.
+
+![](imgT/img88.jpg)
+
+Mật khẩu cho level tiếp theo là: RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz
+
+
+
 
 
 
