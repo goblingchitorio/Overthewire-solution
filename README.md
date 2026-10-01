@@ -29,7 +29,7 @@ Sau khi nhập input thì màn hình sẽ hiện ra yêu cầu nhập password v
 - [How to use SSH with a non-standard port on It's FOSS](https://itsfoss.com/ssh-to-port/).
 - [How to use SSH with ssh-keys on wikiHow](https://www.wikihow.com/Use-SSH)
 
-#### Level 0->1
+## Level 0->1
 Ở ```level 0->1 ``` mình cần tìm password trong thư mục tên là ```readme``` nằm trong thư mục chính. Sử dụng mật khẩu mới lấy được để đăng nhập vào ```bandit1``` bằng ```SSH```. Bất cứ khi nào bạn lấy được mật khẩu cho một cấp độ, sử dụng ```SSH``` trên ```port 2220``` để đăng nhập và tiếp tục game.
 
  
@@ -45,7 +45,7 @@ Trước khi giải game này ta phải làm quen với một số lệnh cơ b�
 ![](https://github.com/goblingchitorio/overthewire-solutions/blob/main/img4.jpg)
 Với các lệnh ở trên, ta sủ dụng lệnh ```ls``` để xem có bao nhiêu thư mục thì bất ngờ thư mục``` readme ``` hiện ra màn hình. Đến đây thì ta chỉ cần sử dụng lệnh ```cat``` để đọc thư mục ```readme```, và mật khẩu của level này hiện trong thư mục readme là :  ```6y2kwnwK6grgvwvpvLaa2T1cpFEKOhNR mk1 ```.
 
-#### Level 1->2
+## Level 1->2
 Ở ```level 1->2 ``` mình cần tim password ở trong một thư mục có tên là ```-``` được lưu trữ trong thư mục chính.
 
 ![](imgT/img5.jpg)
@@ -89,7 +89,7 @@ Ngoài ra vẫn còn thêm một hướng tiếp cận khác để đọc file `
 
 
 
-#### Level 3 -> 4
+## Level 3 -> 4
 Ở level này ```password``` nằm ở một ```file ẩn ``` trong thư mục ```inhere```.
 
 ![](imgT/img11.jpg)
@@ -117,7 +117,7 @@ Nói về bản chất một tí. Lệnh ```ls``` chỉ liệt kê ra các lện
 Mật khẩu cho level tiếp theo là: xzTXq1rDJQVVAzdv5cHq1TQytTWufAMq.
 
 
-#### Level 4 -> 5
+## Level 4 -> 5
 Level này yêu cầu mình lấy password được giấu trong ```file duy nhất  có thể đọc được``` được lưu trữ trong thư mục ```inhere```.
 
 ![](imgT/img16.jpg)
@@ -142,7 +142,7 @@ Như ở thử thách trước sau khi vào được ```user bandit4```, mình n
 
 - Mật khẩu cho level tiếp theo là: 6C7h9GD8M6ai5nr7wo1RonrzFjj9yIrG.
 
-#### Level 5-> 6
+## Level 5-> 6
 Đén ```level 5->6``` yêu cầu mình tìm password trong một ```file con``` nào đó trong thư mục ```inhere```. Đòng thời thỏa mãn các thuộc tính sau:
 
 - Human-readable(có thể đọc được)
@@ -190,7 +190,7 @@ Dựa vào các điều kiện của đề. Mình sẽ suy nghĩ về việc s�
 Mật khẩu của level tiếp theo là: pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
 
 
-#### Level 6 -> 7
+## Level 6 -> 7
 Ở ```level 6 -> 7``` mình cần lấy được password ở một ```file ẩn``` được lưu trữ ở vị trí nào đó trong ```sever```. Đồng thời thỏa mãn các thuộc tính sau:
 
 - own by user bandit7 (thuộc sở hữu của user bandit7).
@@ -217,7 +217,7 @@ Khi đã nắm rõ các cấu trúc lệnh ở level trên thì khi tìm passwor
 Mật khẩu cho level tiếp theo là: Bmnnvf82KzQlfxgAI2d1zYbr1u9pr3E3
 
 
-#### Level 7 -> 8
+## Level 7 -> 8
 Ở level này mật khẩu được giấu trong ```file data.txt```, kế bên là chữ ```millionth```.
 
 
@@ -255,7 +255,7 @@ Thử thách ở level này khá dễ nếu mình đi đúng hướng. Đầu ti
 Mật khẩu cho level tiếp theo:  VR1ljMayciFxbnUokuQmJFw6QC9VKtub
 
 
-#### Level 8 -> 9
+## Level 8 -> 9
 Ở ```level 8 -> 9``` mật khẩu được lưu trữ trong ```file data.txt```, chỉ duy nhất một dòng không lặp lại trong file ```data.txt```.
 
 ![](imgT/img33.jpg)
@@ -271,7 +271,7 @@ Mật khẩu cho level tiếp theo:  VR1ljMayciFxbnUokuQmJFw6QC9VKtub
 
   Mật khẩu cho level tiếp theo là: EjmOSvuAu7sGAHqHVcBDPirRe9T03kxl
 
-  #### level 9 -> 10
+  ## level 9 -> 10
 
 Ở cấp độ tiếp theo mật khẩu được đặt trong ```data.txt```. là một số ít chuỗi kí tự có thể đọc được, được đặt trước nhiều dấu ```=```.
 
@@ -287,7 +287,7 @@ Mật khẩu cho level tiếp theo:  VR1ljMayciFxbnUokuQmJFw6QC9VKtub
 Mật khẩu của level tiếp theo là: B0s2khmbT9u0geKuOoVGW3JZKhndE3BG
 
 
-#### Level 10 -> 11
+## Level 10 -> 11
 Ở ```level 10 -> 11``` yêu cầu lấy password trong file ```data.txt``` , đồng thời chứa dữ liệu mã hóa `base64```.
 
 
@@ -303,7 +303,7 @@ Ngay từ đề bài ta đã biết password trong file ```data.txt``` đã bị
 #### References
 - [Base64 on Wikipedia ](https://en.wikipedia.org/wiki/Base64)
 
-#### Level 11 -> 12
+## Level 11 -> 12
 Ở thử thách này, password mình cần tìm nằm trong file ```data.txt``` được mã hóa một cách đặt biệt bằng cách các chữ cái thường ```a-z``` các chữ cái in hoa ```A-Z``` được thay đổi cách nhau 13 vị trí.
 
 ![](imgT/img40.jpg)
@@ -325,7 +325,7 @@ Mật khẩu cho level tiếp theo là: GROozWPO8QyN0mGrjUkID0WCYkZiQxrN
 
 
 
-#### Level 12 -> 13
+## Level 12 -> 13
 
 Ở level này password được giấu trong  có tên là ```data.txt```, được định dạng sẵn là một ```hexdump``` và đã được nén nhiều lần. Và đề có cho mình một gợi tí là hãy tạo một thư mục mới dưới dạng ```/tmp```. Nơi mà mình có thể giải né các file ```hexdump```, dùng lệnh ```mktemp -d``` để tạo một ```directory ``` và copy các dữ liệu trong tệp ```data.txt``` qua thư mục mới tạo bằng lệnh ```cp``` đồng thơi thực hiện thao tác đổi tên bằng lệnh ```mv```.
 
@@ -396,7 +396,7 @@ Khỉ tiếp cận vào bài này mình sẽ nghĩ là sử dụng lệnh ```xxd
 - [hexdump on Wikipedia ](https://en.wikipedia.org/wiki/Hex_dump)
 
 
-#### Level 13 -> 14
+## Level 13 -> 14
 Ở level này được lưu trong ```/etc/bandit_pass/bandit14``` và mình chỉ có thể đọc được khi mình đăng nhập vào ```user bandit14```. Ở đây mình sẽ không đi tìm password cho level này, mà mình phải tìm ```sshkey private```để có thể đăng nhập vào level tiếp theo. Nhìn vào việc đăng nhập vào các level trước đây để có thể đăng nhập vào```user``` thông qua giao thức```ssh``` và tìm cách sử dụng```key``` cho level tiếp theo. Và nếu bạn cần gợi ý thì có một tệp nằm ở trong thư mục chính, và hãy đọc kĩ các thông báo lỗi vì nó rất hữu ích.
 
 ![](imgT/img56.jpg)
@@ -448,7 +448,7 @@ Mật khẩu cho level tiếp theo là: aaWecNkG4FhxJQxz07uiwzVP6bJiYS65
 - [Tranferring File and SCP](https://help.ubuntu.com/community/SSH/TransferFiles)
 
 
-#### Level 14->15
+## Level 14->15
 Ở level này, mình muốn có được mật khẩu của level tiếp theo thì phải truy cập vào user ```localhost``` ở cổng ```port 30000``` và gửi mật khẩu hiện tại lên.
 
 ![](imgT/img63.jpg)
@@ -471,7 +471,7 @@ Mật khẩu cho level tiếp theo là: pbLYuZtTg4MgaqfJx8jbA9gKKGqM68A7
 - [Port (computer networking) on Wikipedia](https://en.wikipedia.org/wiki/Port_(computer_networking))
 
 
-#### Level 15->16
+## Level 15->16
 Màn cướp mật khẩu này ta phải gửi lại mật khẩu của level hiện tại lên ```localhost```vào cổng 30001. NHưng ta được cho giả thuyết là phải sử dụng ```SSL/TLS encryption```.
 
 ![](imgT/img66.jpg)
@@ -503,7 +503,7 @@ Mật khẩu cho level tiếp là: kS0Hf0u5HiXFwKMKFqXvPdOTNGGa0X8V
 - [OpenSSL Cookbook - Testing with OpenSSL](https://www.feistyduck.com/library/openssl-cookbook/online/testing-with-openssl/index.html)
 
 
-#### Level 16->17
+## Level 16->17
 Ở cấp độ này mình tìm mật khẩu cho level tiếp theo bằng cách gửi mật khẩu vào một cổng trong số các cổng từ ```31000 đến 32000``` trên ```localhost``` . Đầu tiên mình phải biết được cổng nào có chứa dữ liệu ```ssl``` cổng nào không. Sẽ có duy nhất một cổng có chứa mật khẩu, các cổng còn lại sẽ gửi lại các giá trị mà bạn đã gửi.
 
 ![](imgT/img69.jpg)
@@ -530,7 +530,7 @@ Mật khẩu cho level tiếp theo là: pWXMAZoxGC8JmDMfmT5MGEsobMM3vnj2
 -[Port scanner on Wikipedia](https://en.wikipedia.org/wiki/Port_scanner)
 
 
-#### Level 17->18
+## Level 17->18
 Ở level này mình có 2 thư mục nằm trong ```homedirectory```. Đó là ```passwords.old and passwords.new```. Mật khẩu cho level tiếp theo nằm trong thư mục ```passwords.new```. Là dòng duy nhất có thể thay đổi giữa ```passwords.old and passwords.new```.
 
 
@@ -545,7 +545,7 @@ Mật khẩu cho level tiếp theo là: pWXMAZoxGC8JmDMfmT5MGEsobMM3vnj2
 Mật khẩu cho level tiếp theo là: OQxXZjELndr90zuhOTDYBEomI0SZITXI
 
 
-#### Level 18->19
+## Level 18->19
 
 Ở level này mật khẩu nằm trong file ```readme``` ở thư mục chính (```homedirectory```). Không may một số file ```bashrc``` đã bị chỉnh sửa khi mình đăng nhập vào bằng ```SSH```.
 
@@ -566,7 +566,7 @@ Nên ở đây mình sẽ sửa dụng thêm option(```-T```) có thể bỏ qua
 
 Mật khẩu cho level tiếp theo là: KpsOfPkcP7i1FlIExk2QEjyt6dw8dxZI
 
-#### Level 19->20
+## Level 19->20
 Để truy cập lên cấp độ tiếp theo, bạn nên sử dụng nhị phân ```setuid``` trong thư mục chính. Thực thi nó mà không cần đối số để tìm hiểu cách để sử dụng nó. Mật khẩu cho cấp độ này có thể được tìm thấy trong phần thông thường ```Place (/etc/bandit_pass)```, sau khi bạn đã sử dụng nhị phân ```Setuid```.
 
 ![](imgT/img80.jpg)
@@ -581,7 +581,7 @@ Khi log vào được sever ```bandit19```, mình thực hiện lệnh ```ls``` 
 Mật khẩu cho level tiếp theo là: 4pIjcunZ0fK2vmp3IwfG8Vf7VhxD6pOA
 
 
-#### Level 20->21
+## Level 20->21
 Ở level này, có một thư mục dạng ```setuid binary(nhị phân)``` nằm trong thư mục chính, mình phải sử dụng ```suconnect``` để làm theo các bước sau: đầu tiên mình phải tạo ra một cổng mới trên ```commandline``` để kết nối với ```localhost```, tiếp theo bạn sẽ nhập vào chương trình đang chạy ```suconnect``` dưới cổng mà mình mới tạo để ```suconnect``` tiến hành so sánh với mật khẩu của level hiện tại. Nếu đúng thì sẽ trả lại mật khẩu cho level tiếp theo.
 
 ![](imgT/img83.jpg)
@@ -604,7 +604,7 @@ Sau khi chạy tệp nhị phân mình tiến hành điền mật khẩu vào đ
 
 Mật khẩu cho level tiếp theo là: bW9kBv5WC3P4yoDyf12LSdGuNz5ka6hY
 
-#### Level 21->22
+## Level 21->22
 
 Một chương trình chạy tự động theo các khoảng thời gian đều đặn từ cron, bộ lập lịch công việc dựa trên thời gian. Hãy tìm trong ```/etc/cron.d/``` cấu hình và xem lệnh nào đang được thực thi.
 
@@ -616,6 +616,27 @@ Một chương trình chạy tự động theo các khoảng thời gian đều 
 ![](imgT/img88.jpg)
 
 Mật khẩu cho level tiếp theo là: RYVux2rHEm9tiXHmLFzuR7Vhx6AZQMEz
+
+## Level 22->23
+Một chương trình chạy tự động theo các khoảng thời gian đều đặn từ cron, bộ lập lịch công việc dựa trên thời gian. Hãy tìm trong ```/etc/cron.d/``` cấu hình và xem lệnh nào đang được thực thi.
+
+![](imgT/img89.jpg)
+
+#### Solution 
+Đầu tiên mình sẽ đi đến ```/etc/cron.d``` bằng lệnh ```cd```. sau đó cat tệp ```cronjob_bandit23```
+
+![](imgT/img90.jpg)
+
+Tiếp theo mình làm như trong hướng dẫn. Nhưng trước đó mình sẽ hiều lệnh ```echo``` được dùng để hiển thị ```shell scripts```(là một tệp văn bản chứa một chuỗi các lệnh của linux được sắp sếp theo thứ tự để vào hệ thống). Đầu tiên mình dùng lệnh ```echo I am user bandit23 | md5sum | cut -d ' ' -f 1``` để hiện thị tên của một dường đẫn sẽ được đọc thay cho ```/etc/bandit_pass/$myname```. Cuối cùng dùng lệnh cat để đọc, cụ thể ```cat /tmp/8ca319486bfbbc3663ea0fbe81326349```.
+
+![](imgT/img91.jpg)
+
+Mật khẩu cho level tiếp theo là: gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw
+
+
+
+
+
 
 
 
