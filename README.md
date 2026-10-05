@@ -634,6 +634,36 @@ Tiếp theo mình làm như trong hướng dẫn. Nhưng trước đó mình s�
 Mật khẩu cho level tiếp theo là: gKXDTAXnIz3OBxiPjRZ2uqutUlPZrBsw
 
 
+## Level 23 -> 24
+Một chương trình chạy tự động theo các khoảng thời gian đều đặn từ cron, bộ lập lịch công việc dựa trên thời gian. Hãy tìm trong /etc/cron.d/ cấu hình và xem lệnh nào đang được thực thi.
+
+LƯU Ý: Cấp độ này yêu cầu bạn tự tạo bản thân trước Shell-script. Đây là một bước tiến rất lớn và bạn nên tự hào về chính mình khi bạn vượt qua màn này!
+
+LƯU Ý 2: Hãy nhớ rằng script shell của bạn sẽ bị xóa một lần đã thực thi, nên bạn có thể muốn giữ một bản sao quanh đây...
+
+![](imgT/img92.jpg)
+
+
+#### Solution 
+Ngay khi đọc để mình đã biết để lấy được mật khẩu ở level này thì mình cần phải tạo ra một cái ```shell-script``` ma có thể lấy được mật khẩu từ ```/etc/bandit_pass/bandit24```. Và để làm được thì mình cần phải tạo một file ```bash``` hiểu nôm na file bash là một lệnh tự động thực hiện một chuỗi lệnh mà không cần phải gõ từng dòng lênh, một công cụ vô cùng mạnh khi cố gắng đọc, ghi đè vào một file nào đó mà mình không có quyền truy cập.
+
+- Đầu tiên ta tạo một thư mục mới để có thể thao tác trực tiếp bằng lệnh```mktemp -d```. Khi đã tạo và đi vào thư mục rồi ta sẽ phải cung cấp quyền truy cập và ghi đề cho thư mục vừa tạo bằng lệnh ```chmod 777 [tên thư mục vừa tạo]```. 
+- Tiếp theo tiến hành tạo một file ```bash``` mình dùng lệnh ```touch [tên file]```. Sau khi tạo file bash thành công mình cũng sẽ cung cấp quyền cho nó băng lệnh ```chmod 777 [tên file]```.  Tiếp đến mình dùng lệnh ```nano [tênfile]``` để ghi text vào file bash, quan trọng là khi ghi text vào file bash mình phải khai báo bằng ```#!/bin/bash```.
+
+![](imgT/img93.jpg)
+
+Giải thích: khi ghi text vào file bash là ``` cat /etc/bandit_pass/bandit24 > /tmp/tmp.L4CiQAvon3/flag``` có thể hiểu là khi chạy file bash này thì sẽ tiến hành đọc mật khẩu trong tệp ```/etc/bandit_pass/bandit24``` thì password sẽ được lưu vào file ```flag``` thông qua đường dẫn ```/tmp/tmp.L4CiQAvon3```. Vậy nên đến đây mình sẽ tạo ra môt file đích để lưu mật khẩu đã đọc vào file ```flag```. Và nhớ phải cung cấp đầy đủ quyền cho file ```flag``` vừa tạo bằng lệnh ```chmod```. 
+
+Sau khi thực hiện các bước trên, mình vẫn còn một phần quan trọng để chạy được file bash trên đó là thay đổi tên của file bằng lệnh ```mv```. Cụ thể ```mv thinhcao thinhcao.sh```. Sau đó mình sẽ copy cái text vừa ghi vào file và paste nó vào tệp ```/var/spool/"$myname"/foo```("$myname" là bandit24). 
+Cụ thể ``` cp thinhcao.sh /var/spool/bandit24/foo```. Đến đây mình chỉ việc đọc file bash đich là ```flag```. Cụ thể là ``` cat flag```. Thì mật khẩu cho level tiếp theo sẽ xuất hiện.
+
+
+![](imgT/img94.jpg)
+
+Mật khẩu cho level tiếp theo là: hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv
+
+
+
 
 
 
