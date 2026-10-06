@@ -662,6 +662,27 @@ Cụ thể ``` cp thinhcao.sh /var/spool/bandit24/foo```. Đến đây mình ch�
 
 Mật khẩu cho level tiếp theo là: hVQMk3lJNsmQ7VF3ubyrNNBom7BOgVXv
 
+## Level 24 -> 25
+Có một ```deamon``` sẽ lắng nghe ở port ```30002```và mình sẻ phải gửi mật khẩu của level hiện tại đến máy chủ ```localhost``` thông qua cổng trên kèm với một đoạn mã ```digit pincode```với 4 số. Sẽ không có cách nào khác để có thể thử đúng 4 kí tự của mã pincode bằng phương pháp ```bruce-forcing```.
+
+![](imgT/img94.jpg)
+
+#### Solution
+Khi đọc đề bài mình sẽ phải dùng những cách đã làm ở level trước để giải quyết chứ mình không thể nào thử 10000 lần mật khẩu 4 mã pincode được. Thay vào đó mình sẽ tạo ra một file ```bash``` để có thể làm một cách tự động tìm được password cho level tiếp theo. 
+
+- Đầu tiên mình sẽ tạo một thư mục để có thể thao tác. sau đó tạo file bash với lệnh ```touch``` với đuôi ```.sh```. Tiếp đến cấp quyền đọc,ghi đè cho file bash vừa tạo bằng lệnh ```chmod```. Điền text vào file bash bằng lệnh nano như level trên.
+- Tiếp theo chạy file bash mình mới tạo bằng lệnh ```./tên file```. Kiểm tra xem file đích đã được tạo chưa bằng lệnh ```ls -la```.
+
+ ![](imgT/img96.jpg)
+
+- Cuối cùng minh sẽ đọc file đích chứa các ( mật khẩu và pincode) . Cụ thể ```cat [tên file đích] | nc localhost > flag```.
+
+
+![](imgT/img97.jpg)
+
+Mật khẩu cho level tiếp theo là: SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P
+
+
 
 
 
