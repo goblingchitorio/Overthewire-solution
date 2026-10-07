@@ -1,5 +1,4 @@
-# overthewire-solutions
-Overthewire - writeups CTF
+# Overthewire-solutions
 - **challenge**: bandit overthewire level 1->34
 - **category**: basic linux
 - **Difficulty**: easy
@@ -681,6 +680,142 @@ Khi đọc đề bài mình sẽ phải dùng những cách đã làm ở level 
 ![](imgT/img97.jpg)
 
 Mật khẩu cho level tiếp theo là: SoHfqMOEqIX2IYKVciZxvgpR9a2Djx4P
+
+
+## Level  25->26
+Để đăng nhập vào ```bandit26``` bằng bandit25 có thể sẽ khá dễ dàng. Shell cho user bandit26 không nằm trong ```/bin/bash```mà là một mục khác. Tìm hiểu đó là gì và cách hoạt động như thế nào.
+
+![](imgT/img98.jpg)
+
+#### Solution
+Khi đăng nhập vào ```bandit25``` mình sẽ thấy xuất hiện một tệp mã có thể đăng nhập vào user bandit26 có tên là ```bandit26.sshkey```. Mình sẽ dùng tệp mã này để đăng nhập vào ```bandit26```. Cụ thể ``` ssh bandit26@bandit.labs.overthewire.org -p 2220 -i bandi26.sshkey -l bandit26```. Khi vừa đăng nhập vào mình sẽ bị đá văng ra khỏi user ngay lập tức.
+ 
+ 
+![](imgT/img99.jpg)
+
+Bây giờ mình sẽ tìm hiểu lý do vì sao vậy? Nhớ lại những level trước khi ```ls``` ra các thư mục ở ```homedirectory``` mình thấy có 2 tệp chính đó là ```/etc/bandit_pass``` và ```/etc/passwd```. Ở tệp thư mục đầu tiên chứa mật khẩu cho các level, vậy mình sẽ kiểm tra tệp còn lại bằng lệnh ```cat```.
+
+![](imgT/img100.jpg)
+
+Để lọc lại từ khóa mình dùng lệnh ```grep``` để tìm đúng những dòng có ```bandit```. Cụ thể ```cat /etc/passwd | grep bandit```
+
+![](imgT/img101.jpg)
+
+Đến đây mình có thể thấy ```user bandit26``` không chạy bằng shell ```/bin/bash ```như những level trước mà thay bằng shell ```/usr/bin/showtext```. Mình tiến hành đọc tệp shell này. Và mình thấy đó là một file bash, để ý dòng cuối có ```exit 0``` có nghĩa là khi mình nhập password vào nó sẽ tự động đá mình ra khỏi sever. Để khắc phục tình trạng này mình để ý dòng thứ 2 có text ```exec more ~/text.txt``` có nghĩa là sẽ in ra file ```text.txt``` qua độ lớn của cửa sổ ```terminal```. Sau đó mình dùng lệnh ```man``` để kiểm tra ```more``` có phải là một lệnh không thì bất ngờ là có, đến đây có một dòng showtext ```Khi màn hình đang dừng ở giao diện đọc nội dung của more, việc nhấn phím v sẽ mở ngay lập tức file đó bằng trình biên tập văn bản vi (hoặc vim) tại đúng vị trí dòng bạn đang xem```. Đã có ý tưởng mình tiến hành thu hẹp ```terminal``` lại và đăng nhập vào bandit26 như cũ. 
+
+- Khi đã thu nhỏ cửa sổ terminal lại mình thấy xuất hiện ```more số%```, thì mình bấm phím ```v``` để mở file bằng trình biên tập văn bản ```vi```. Đến đây mình sẽ thay đổi shell của ```bandit26``` về lại file bash. Cụ thể ```:set shell=/bin/bash```(set có nghĩa đặt lại). Sau đó nhấn enter và mình phải điền đuôi của file bash là ```sh```, cụ thể ```:sh```.
+
+![](imgT/img102.jpg)
+
+Đến đây mình đã vào được ```bandit26``` tiến hành đọc mật khẩu. Cụ thể ```cat /etc/bandit_pass/bandit26```
+
+Mật khẩu cho level tiếp theo là: jHdv2ELQhT22BkprMNDjybZDAkw1zeBJ
+
+
+## Level 26->27
+Làm tốt lắm khi có được một chiếc vỏ sò! Giờ thì nhanh lấy mật khẩu của bandit27 đi!
+
+![](imgT/img103.jpg)
+
+#### Solution 
+Tương tự như level trên khi đăng nhập vào level tiếp theo cũng bị out ra ngay lập tức. Mình vẫn sẽ dùng cách trên để lấy mật khẩu.
+
+![](imgT/img105.jpg)
+
+Mật khẩu cho level tiếp theo là: STJLJBRRphMxKB392CT4iOr5CbzPU9ER
+
+## Level 27->28
+Có một kho git tại cổng 2220. Mật khẩu của người dùng giống như của người dùng ```.ssh://bandit27-git@bandit.labs.overthewire.org/home/bandit27-git/repo2220bandit27-gitbandit27```
+
+Từ máy địa phương của bạn (không phải máy OverTheWire!), Nhân bản kho lưu trữ và tìm mật khẩu cho cấp độ tiếp theo. Tính năng này cần được cài đặt git cục bộ trên máy của bạn
+
+![](imgT/img106.jpg)
+
+#### Solution
+Để lấy được mật khẩu của level này mình cần phải hiểu được ```git```, cụ thể bài này mình sẽ dùng lệnh ```git clone``` có nghĩa là copy tất cả các file về repo cục bộ để dễ sử dụng. Lưu ý:``` các thao tác này phải được thực hiện ở user máy tính không phải trong user của overthewire```.
+
+Tiếp theo mình chạy input lệnh ``` git clone ssh://bandit27-git@bandit.labs.overthewire.org:2220/home/bandit27-git/repo2220bandit27-gitbandit27 ```
+
+![](imgT/img107.jpg)
+
+ Khi chạy xong mình dùng lệnh ```dir``` để kiêm tra xem file ```repo``` đã được copy qua chưa? Khi thấy xuất hiện rồi thì phần còn lại đơn giản.
+
+
+ ![](imgT/img108.jpg)
+
+Mật khẩu cho level tiếp theo là: y8Yd2ssKcpHpud7UvOSOxwamRMzIGIeQ
+
+#### References
+- [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+
+
+## Level 28->29
+Có một kho git tại cổng 2220. Mật khẩu của người dùng giống như của người dùng ```ssh://bandit28-git@bandit.labs.overthewire.org/home/bandit28-git/repo2220bandit28-gitbandit28```
+
+Từ máy địa phương của bạn (không phải máy OverTheWire!), Nhân bản kho lưu trữ và tìm mật khẩu cho cấp độ tiếp theo. Tính năng này cần được cài đặt git cục bộ trên máy của bạn.
+
+![](imgT/img109.jpg)
+
+#### Solution
+Thực hiện như level trên để tải được file repo.
+
+![](imgT/img110.jpg)
+
+Đến đây mình kiểm tra xem file repo đã được copy chưa? Tiếp theo lập lại các thao tác như trên.
+
+![](imgT/img111.jpg)
+
+khi mật khẩu hiện lên nhưng nó là một chuỗi các chữ ```x``` chứng tỏ commit này không phải là commit chứa mật khẩu hoặc đã bị chỉnh sửa. Đến đây mình dùng lệnh ```git log``` để hiển thị các commit trong file repo đó. Sau đó mình sẽ dùng lệnh ```git switch hay git checkout``` để thay đổi commit chứa mật khẩu và đọc file cuối.
+
+![](imgT/img112.jpg)
+
+Mật khẩu cho level tiếp theo là:  Em7eGtqaMySwNFjCpwzzHhLhospOcdt0
+
+#### References
+-[Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+-[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+
+## Level 29->30
+Có một kho git tại via the port. Mật khẩu của người dùng giống như của người dùng .ssh://bandit29-git@bandit.labs.overthewire.org/home/bandit29-git/repo2220bandit29-gitbandit29
+
+Từ máy địa phương của bạn (không phải máy OverTheWire!), Nhân bản kho lưu trữ và tìm mật khẩu cho cấp độ tiếp theo. Tính năng này cần được cài đặt git cục bộ trên máy của bạn.
+
+![](imgT/img113.jpg)
+
+#### Solution
+Thực hiện việc copy file repo như level trên.
+
+
+![](imgT/img114.jpg)
+
+
+![](imgT/img115.jpg)
+
+
+![](imgT/img116.jpg)
+
+Đến đây mình sẽ thấy là không có mật khẩu trong commit này. Mình sẽ nghĩ ngay là còn các commit khác trong file repo này, mình sử dụng lệnh ```git branch -a```(-a là option all) để hiển thị tất cả các commit có trong file repo này.
+
+
+![](imgT/img117.jpg)
+
+Sau khi hiển thị mình thấy có 4 commit trong file và mình tiến hành kiểm tra từng commit một bằng lệnh ```git check```
+
+![](imgT/img118.jpg)
+
+Mới kiểm tra commit đầu tiên đã xuất hiện mật khẩu. Mật khẩu cho level tiếp theo là: jq9Dfg2rXsfYsWMgFuKlXhphjdH7USgX
+
+#### References
+-[Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+-[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+
+
+
+
+
+
 
 
 
