@@ -812,8 +812,58 @@ Mới kiểm tra commit đầu tiên đã xuất hiện mật khẩu. Mật kh�
 -[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
 
 
+#### Level 30->31
+Có một kho git tại cổng 2220. Mật khẩu của người dùng giống như của người dùng ```ssh://bandit30-git@bandit.labs.overthewire.org/home/bandit30-git/repo2220bandit30-gitbandit30```. Từ máy địa phương của bạn (không phải từ máy chủ của overthewire). Nhân bản kho lưu trữ và tìm mật khẩu cho cấp độ tiếp theo. Tính năng này cần được cài đặt git cục bộ trên máy của bạn.
+
+![](imgT/img119.jpg)
 
 
+
+#### Solution 
+Thực hiện thao tác tải tệp ```repo```. Cụ thể ```git clone ssh://bandit30-git@bandit.labs.overthewire.org:2220/home/bandit30-git/repo```. Kiểm tra lại xem tệp ```repo``` đã được tải chưa bằng lệnh ```dir```
+
+![](imgT/img120.jpg)
+
+Đến đây mình sẽ không tìm thấy mật khẩu trong file ```README.md```. Nhưng trong một commit ngoài nhánh chính ra mình còn cần phải kiểm tra một nhánh cũng có thể có thể chứa mật khẩu  đó là   ```tag```. Cụ thể ```git tag```. Thì bất ngờ thấy xuất hiện nhánh tag ```secret```. Cuối cùng dùng lệnh ```git show``` để kiểm tra nhánh tag ```secret``` có chứa mật khẩu không?
+
+
+
+![](imgT/img121.jpg)
+
+Mật khẩu cho level tiếp theo là: 82NkymblpGBYmIXG6ZQ8YldBYstHpfUf
+
+
+#### References
+-[Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+-[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
+
+
+#### level 31->32
+Có một kho git tại cổng 2220. Mật khẩu của người dùng giống như của người dùng ```ssh://bandit31-git@bandit.labs.overthewire.org/home/bandit31-git/repo2220bandit31-gitbandit31````
+
+Từ máy địa phương của bạn (không phải máy OverTheWire!), Nhân bản kho lưu trữ và tìm mật khẩu cho cấp độ tiếp theo. Tính năng này cần được cài đặt git cục bộ trên máy của bạn.
+
+![](imgT/img122.jpg)
+
+#### Solution
+Thực hiện thao tác tải tệp ```repo```. Cụ thể ```git clone ssh://bandit31-git@bandit.labs.overthewire.org:2220/home/bandit31-git/repo```. Tiếp theo khi đọc file ```README.md``` thì nhiệm vụ của mình là tạo một file có tên là ```key.txt```, nội dung của file là ```May I come in?``` được gửi đến đường dẫn của commit ```branch master```.
+
+
+Đầu tiên dùng lệnh ```echo```. Cụ thể ```echo May I come in?>key.txt``` tiếp đến sao chép file này tệp ```repo``` bằng ```cp```. Cụ thể ```cp key.txt repo```. Sau đó mình thực hiện việc đẩy tệp ```key.txt``` vào commit của nhánh ```master``` bằng lệnh ```git```. Cụ thể ``` git add -f key.txt``` (-f lầ option bỏ qua việc gitignore mà đẩy trực tiếp file lên). Tiếp theo thực hiện đóng gói(snapshot) file mới đẩy lên bằng lệnh ```git commit```. Cụ thể ```git commit -m "key.txt"```. Cuối cùng thực hiện thao tác đầy, cụ thể ```git push origin master```.
+
+
+![](imgT/img123.jpg)
+
+
+![](imgT/img124.jpg)
+Mật khẩu cho level tiếp theo là: pWuj5jBQ6IgV0NXwiH6g1pXRF8S1YvbT
+
+
+#### References
+-[Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+-[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
 
 
 
