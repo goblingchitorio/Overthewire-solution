@@ -866,6 +866,38 @@ Mật khẩu cho level tiếp theo là: pWuj5jBQ6IgV0NXwiH6g1pXRF8S1YvbT
 -[Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/)
 
 
+#### Level 32->33
+Sau tất cả những chuyện này, đã đến lúc trốn thoát lần nữa. Chúc bạn may mắn!git.
+
+
+![](imgT/img125.jpg)
+
+#### Solution
+Ở level này ở thư mục ```homedirectory``` đang chạy không phải là một file ```/bin/bash``` mà nó là một file ```uppershell```. Khi mình đăng nhập vào ```bandit32``` mình sẽ không phải chạy một file ```/bin/sh``` thông thường mà mình sẽ được đưa vào một file định dạng như một ```uppercase shell```(có thể hiểu nôm na là một terminal lỗi). Đến đây ý tưởng của mình là làm sao để đưa về một ```Bourne shell``` tiêu chuẩn để có thể chạy được các lệnh tiêu chuẩn của ```command linux```. Khi đó mình search sẽ thấy một từ khóa khá nỗi là ```$0```( đó là một paramater expansion có nghĩa là tham số mở rộng). Nghĩa là khi mình chạy lệnh ```$0```` trong một interactive shell thì hệ thống sẽ hiểu là mình muốn đưa về một shell tiêu chuẩn (/bin/sh). Cụ thể ```$0```. 
+
+Đến đây mình có thể dùng lệnh ```whoami``` để biết mình đang thuộc ```user``` nào.
+
+
+![](imgT/img126.jpg)
+
+Cuối cùng mình chỉ cần dùng lệnh ```cat``` để đọc mật khẩu cho level tiếp theo. Cụ thể ```cat /etc/bandit_pass/bandit33```.
+
+![](imgT/img1227.jpg)
+
+
+#### Level 33->34
+Ở thời điểm hiện tại vẫn chưa có level của ```bandit34```
+
+![](imgT/img128.jpg)
+
+#### Solution
+Đến đây mình đã hoàn thành các level của ```Bandit overthewire```. Mình đã hoàn thành trong tổng thời gian là 3 tuần 5 ngày.
+
+![](imgT/img129.jpg)
+
+
+## Lưu bút cuối:
+- Sau khi hoàn thành các level của ```bandit overthewire``` mình cảm thấy rất vui và hân hoan, trên hành trình này mình xin gửi lời cảm ơn sâu sắc đến anh ```Ngọc sinh``` đã truyền động lực cho mình cũng như giúp đỡ mình tìm kiếm các công cụ để có thể hoàn thành các level này một cách hoàn thiện nhất. Đây là mảng kiến thức mới mẽ đối với mình nên trong quá trình giải hay trong quá trình viết ```Soluiton``` có sai sót gì mong mọi người góp ý ạ!.
 
 
 
